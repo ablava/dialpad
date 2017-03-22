@@ -199,6 +199,10 @@ def create(username, givenName, sn, ou):
         headers = {
         }
         
+        # urlencode first and last names
+        givenName = urllib.pathname2url(givenName)
+        sn = urllib.pathname2url(sn)
+        
         # Connect to Dialpad API
         conn = httplib.HTTPSConnection('dialpad.com')
         conn.request("GET", "/api/v1/admin/user?api_key=" + api_key 
